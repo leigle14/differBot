@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery-3.1.1.min.js"></script>
+		<script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    	<script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="AdminPanel.css">
+
+	</head>
+<body>
+	<section class="container">
+				<!-- Venstre siden -->
+  		<div class="left-half">
+			<div class="topnav"">
+				<h1> Edubots </h1>
+				<li><a href="#Inbox">Inbox</a></li>
+				<li><a href="#Answered">Answered</a></li>
+				<li><a href="#BotTraining">Bot training</a></li>
+				<!--
+				<button onclick="dropFunction()" class="dropbtn">Newest first &#9660;</button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="#Newest">Newest first</a>
+						<a href="#OldestFirst">Oldest first</a>
+						<a href="#MostPopular">Most popular</a>
+					</div>
+					-->
+			</div>
+				<div class="inbox">
+				<br>
+					<div class="chatBox" id="chatBox1"> 
+    				<p>What was the most important changes to humasn during the congnetive revolution?</p>
+    				</div>
+				</div>
+			<!--<div class="dropdown">
+					<button onclick="dropFunction()" class="dropbtn">Newest first &#9660;</button>
+						<div id="myDropdown" class="dropdown-content">
+						<a href="#Newest">Newest first</a>
+						<a href="#OldestFirst">Oldest first</a>
+						<a href="#MostPopular">Most popular</a>
+					</div>
+				</div> -->
+ 		</div>
+ 					<!-- Høyre siden -->
+  		<div class="right-half">
+    		<h2>Forwarded Bot Answer</h2>
+   
+    		<div class="chatLog"> 
+    			<div class="chatBox" id="chatBox1"> 
+    			<p id="demo"></p>
+    			</div>
+    			<div class="chatBox" id="chatBox2">
+    			</div>
+    		</div>
+    			<h3>Write an answer to:</h3>
+				<form>
+					<textarea id="myTextArea" placeholder="Say something..."></textarea>
+				</form>
+				<button id="btn1" onclick="myFunction()">Send</button>
+				<p id="demo"></p>
+  		</div>
+	</section>
+
+	<script type="text/javascript">
+		function myFunction() {
+			var x = document.getElementById("myTextArea").value;
+			document.getElementById("demo").innerHTML = x;
+		}
+		/*
+			function myFunction() {
+				var x = document.getElementById("myTopnav");
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+
+			$('#btn1').click(function() {
+				alert( $("#myTextArea").val() );
+			})
+			 /* For å teste om jQuery fungerer 
+			window.onload = function() {
+				if (window.jQuery) {
+					// jQuery is loaded
+					alert("Yeah!");
+				} else {
+					// JQuery is not loaded
+					alert("Dosen't Work");
+				}
+			}
+			 */ 
+			/*Når bruker trykker på knappen, så vil det bytte mellom "hiding" og "showing" på dropdown metoden 
+			*/
+			/* function dropFunction() {
+				document.getElementById("myDropdown").classList.toggle("show")
+			}
+
+			// Dropdown funksjonen lukkes hvis bruker trykker utenfor dropdown knappen
+			window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+
+					var dropdowns = document.getElementByClassName("dropdown-content");
+					var i;
+					for (i = 0; i < dropdowns.length; i++) {
+						var openDropdown = dropdowns[i];
+						if (openDropdown.classList.contains('show')) {
+							openDropdown.classList.remove('show');
+						}
+					}
+				}
+			}
+			*/
+
+	</script>
+</body>
+</html>

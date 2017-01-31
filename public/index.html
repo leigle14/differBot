@@ -1,0 +1,167 @@
+<!Doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+  		<script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  		<script language="javascript" src="libraries/p5.dom.js"></script>
+  		<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+  		<link rel="stylesheet" type="text/css" href="index.css">
+		<title>Firebase test</title>
+	</head>
+	<body>
+		<div class="mainDiv" align="left">
+			
+			<div class="left-side">
+				<h1>Edubots</h1>
+				<li><a href="#Inbox">Inbox</a></li>
+				<li><a href="#Answered">Answered</a></li>
+				<li><a href="#BotTraining">Bot training</a></li>
+				<h2 id="user1" align="left">Firebase web App</h2>
+				<p id="userQuestion1" align="left">Content</p>
+				<h2 id="user2" align="left">Title</h2>
+				<p id="userQuestion2" align="left">Bot answer</p>
+				<h2 id="user3" align="left">Svar</h2>
+				<p id="userQuestion3" align="left">Søker...</p>
+			</div>	
+
+			<div class="right-side">
+				<h2 id="studentName" align="left">Firebase web App</h2>
+				<p id="fireAnswer" align="left">Content</p>
+				<h2 id="botName" align="left">Title</h2>
+				<p id="botAnswer" align="left">Bot answer</p>
+				<h2 id="answerToStudent" align="left">Svar</h2>
+				<p id="showAnswer" align="left">Søker...</p>
+
+				<h3> Write an answer to Danny: </h3>
+				<textarea id="mainText" placeholder="Say something..."></textarea>
+				<br>
+				<button id="submitBtn" onclick="submitClick()">Send</button>
+			</div>
+		</div>
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD9crO-z5GJgxIgBy-IEr9mcFiC5d6I4zk",
+    authDomain: "differ-bot-hosting.firebaseapp.com",
+    databaseURL: "https://differ-bot-hosting.firebaseio.com",
+    storageBucket: "differ-bot-hosting.appspot.com",
+    messagingSenderId: "161733476770"
+  };
+
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+	var mainText = document.getElementById("mainText");
+	var submitBtn = document.getElementById("submitBtn");
+	var fireHeading = document.getElementById("fireHeading");
+	var fireAnswer = document.getElementById("fireAnswer");
+	var botAnswer = document.getElementById("botAnswer");
+	var botName = document.getElementById("botName");
+	var showAnswer = document.getElementById("showAnswer");
+	var answerToStudent = document.getElementById("answerToStudent");
+	var user1 = document.getElementById("user1");
+	var user2 = document.getElementById("user2");
+	var user3 = document.getElementById("user3");
+	var userQuestion1 = document.getElementById("userQuestion1");
+	var userQuestion2 = document.getElementById("userQuestion2");
+	var userQuestion3 = document.getElementById("userQuestion3");
+
+			// Henter ut teksten fra "Heading:" fra databasen. 
+	var user1Ref = firebase.database().ref().child("Student").child("Student1").child("Name");
+		user1Ref.on('value', function(datasnapshot) {
+			user1.innerText = datasnapshot.val();
+		});
+
+		// Henter ut meldinger fra child "Melding" "1".
+	var userQuestion1Ref = firebase.database().ref().child("Student").child("Student1").child("Message");	
+		userQuestion1Ref.on('value', function(datasnapshot) {
+			userQuestion1.innerText = datasnapshot.val();
+		});
+			// Henter ut teksten fra "Heading:" fra databasen. 
+	var user2Ref = firebase.database().ref().child("Student").child("Student2").child("Name");
+		user2Ref.on('value', function(datasnapshot) {
+			user2.innerText = datasnapshot.val();
+		});
+
+		// Henter ut meldinger fra child "Melding" "1".
+	var userQuestion2Ref = firebase.database().ref().child("Student").child("Student2").child("Message");
+		userQuestion2Ref.on('value', function(datasnapshot) {
+			userQuestion2.innerText = datasnapshot.val();
+		});
+				// Henter ut teksten fra "Heading:" fra databasen. 
+	var user3Ref = firebase.database().ref().child("Student").child("Student3").child("Name");
+		user3Ref.on('value', function(datasnapshot) {
+			user3.innerText = datasnapshot.val();
+		});
+
+		// Henter ut meldinger fra child "Melding" "1".
+	var userQuestion3Ref = firebase.database().ref().child("Student").child("Student3").child("Message");	
+		userQuestion3Ref.on('value', function(datasnapshot) {
+			userQuestion3.innerText = datasnapshot.val();
+		});
+
+
+	var firebaseHeadingRef = firebase.database().ref().child("Names").child("1");
+	firebaseHeadingRef.on('value', function(datasnapshot) {
+		fireHeading.innerText = datasnapshot.val();
+		});
+
+		// Henter ut meldinger fra child "Melding" "1".
+	var firebaseAnswerRef = firebase.database().ref().child("Melding").child("1");	
+		firebaseAnswerRef.on('value', function(datasnapshot) {
+			fireAnswer.innerText = datasnapshot.val();
+		});
+		// Henter navnet til botten fra databasen
+	var botNameRef = firebase.database().ref().child("Bots").child("BotName");
+		botNameRef.on('value', function(datasnapshot) {
+			botName.innerText = datasnapshot.val();
+		});
+		// Henter botens svar fra databasen
+	var botAnswerRef = firebase.database().ref().child("Bots").child("BotAnswer");
+		botAnswerRef.on('value', function(datasnapshot) {
+			botAnswer.innerText = datasnapshot.val();
+		});
+	var answerToStudentRef = firebase.database().ref().child("AnswerToStudent").child("Student").child("AnswerDanny");
+		answerToStudentRef.on('value', function(datasnapshot) {
+			answerToStudent.innerText = datasnapshot.val();
+		});
+		
+		// Skal egentlig hente value ut fra "Answer". Som foreleser svarer på. 
+	var showAnswerRef = firebase.database().ref().child("SvarTilStudent");
+		showAnswerRef.on('value', function(datasnapshot) {
+			showAnswer.innerText = datasnapshot.val();
+		});
+
+
+
+	// Sender inn teksten i textarea til firebase databasen når "Send" knappen blir trykket på
+	// Det som er litt av problemet nå er at key blir random laget.
+	function submitClick() {	
+
+	// Sender svaret til firebase databasen under "Answer" childe
+	var firebaseRef = firebase.database().ref().child("SvarTilStudent");
+
+	var messageText = mainText.value;
+
+	firebaseRef.push().set(messageText);
+	}
+
+	function gotData(data) {
+		console.log(data);
+	}
+
+	function errData(err) {
+		console.log('Error!');
+		console.log(err);
+	}
+
+</script>
+</body>
+</html>
