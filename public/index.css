@@ -4,11 +4,9 @@ body {
 }
 
 p {
-	position: relative;
     margin-top: 0;
 }
 h3 {
-	position: relative;
 	font-size: 16px;
     margin-bottom: 0;
 }
@@ -16,7 +14,7 @@ h3 {
     text-align: left;
 }
 
-.left-side {
+#leftSide {
     display: block;
 	background-color: #F4F8FB;
 	position: absolute;
@@ -26,26 +24,26 @@ h3 {
     border-right: 1px solid #C4D4E1;
     box-sizing: border-box;
 }
-.left-side h1{
+#leftSide h1{
     color: #1d5da8;
     font-weight: 900;
     margin-left: 30px;
     font-size: 36px;
 }
-.headerLeft {
+#headerLeft {
     color: #1d5da8;
 }
-.headerLeft a:link, a:visited {
+#headerLeft a:link, a:visited {
     color: #1d5da8;
     text-decoration: none;
 }
 
-.headerLeft ul {
+#headerLeft ul {
     width: 100%;
     margin: 0;
     border-bottom: 1px solid #C4D4E1;
 }
-.headerLeft li {
+#headerLeft li {
     display: inline-block;
 	margin-left: 5%;
 	color: #305F8D;
@@ -53,12 +51,11 @@ h3 {
 	text-decoration: none;
 	transition: 0.3s;
 	font-size: 17px;
-    font-weight: 700;
 	margin-left: 20px;
 	list-style: none;
     outline: none;
 }
-.headerLeft a {
+#headerLeft a {
     outline: none;
 }
 
@@ -67,6 +64,7 @@ h3 {
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	border-bottom: 5px solid #1d5da8;
+    font-weight: 700;
 }
 
 .newest {
@@ -111,7 +109,7 @@ h3 {
     height: 100%;
 }
 
-.right-side {
+#rightSide {
     display: block;
 	background-color: white;
 	position: absolute;
@@ -119,7 +117,6 @@ h3 {
 	width: 65%;
 	text-align: center;
     box-sizing: border-box;
-    vertical-align: middle;
     
 }
 

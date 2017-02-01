@@ -1,79 +1,78 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
   		<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  		<link rel="stylesheet" type="text/css" href="index.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://use.fontawesome.com/b0971f36c4.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="index.css">
 		
-        <title>Firebase test</title>
+        <title>Edubots</title>
 	</head>
     
 	<body>
-		<div class="mainDiv">
-			
-			<div class="left-side">
-                <section class="headerLeft">
-                    <h1>Edubots</h1>
-                    <div id="tabs">
-                        <ul>
-                            <li><a href="#Inbox">Inbox</a></li>
-                            <li><a href="#Answered">Answered</a></li>
-                            <li><a href="#BotTraining">Bot Training</a></li>
-                        </ul>
-                        <p class="newest">Newest first <i class="fa fa-angle-down fa-lg"></i></p>
-                        <div class="contentLeft">
-                            <div id="Inbox">
-                                <div class="boxLeft">
-                                    <div class="boxImg">
-                                    <img src="http://placehold.it/40x40">
-                                    </div>
-                                    <div class="contentBoxLeft"><span>
-                                        <h3 id="user1">Firebase web App</h3>
-                                        <p id="userQuestion1">Content</p>
-                                        </span>
-                                    </div>
+        <div id="leftSide">
+            <section id="headerLeft">
+                <h1>Edubots</h1>
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#Inbox">Inbox</a></li>
+                        <li><a href="#Answered">Answered</a></li>
+                        <li><a href="#BotTraining">Bot Training</a></li>
+                    </ul>
+                    <p class="newest">Newest first <i class="fa fa-angle-down fa-lg"></i></p>
+                    <div class="contentLeft">
+                        <div id="Inbox">
+                            <div class="boxLeft">
+                                <div class="boxImg">
+                                <img src="http://placehold.it/40x40">
                                 </div>
-                                <div class="boxLeft">
-                                    <div class="boxImg">
-                                    <img src="http://placehold.it/40x40">
-                                    </div>
-                                    <div class="contentBoxLeft">
-                                        <h3 id="user2">Title</h3>
-                                        <p id="userQuestion2">Bot answer</p>
-                                    </div>
-                                </div>
-                                <div class="boxLeft">
-                                    <div class="boxImg">
-                                    <img src="http://placehold.it/40x40">
-                                    </div>
-                                    <div class="contentBoxLeft">
-                                        <h3 id="user3">Svar</h3>
-                                        <p id="userQuestion3">Søker...</p>
-                                    </div>
+                                <div class="contentBoxLeft"><span>
+                                    <h3 id="user1">Firebase web App</h3>
+                                    <p id="userQuestion1">Content</p>
+                                    </span>
                                 </div>
                             </div>
-                            <div id="Answered">
-                                <div class="boxLeft">
-
+                            <div class="boxLeft">
+                                <div class="boxImg">
+                                <img src="http://placehold.it/40x40">
+                                </div>
+                                <div class="contentBoxLeft">
+                                    <h3 id="user2">Title</h3>
+                                    <p id="userQuestion2">Bot answer</p>
                                 </div>
                             </div>
-                            <div id="BotTraining">
-                                <div class="boxLeft">
-
+                            <div class="boxLeft">
+                                <div class="boxImg">
+                                <img src="http://placehold.it/40x40">
+                                </div>
+                                <div class="contentBoxLeft">
+                                    <h3 id="user3">Svar</h3>
+                                    <p id="userQuestion3">Søker...</p>
                                 </div>
                             </div>
                         </div>
+                        <div id="Answered">
+                            <div class="boxLeft">
+
+                            </div>
+                        </div>
+                        <div id="BotTraining">
+                            <div class="boxLeft">
+
+                            </div>
+                        </div>
                     </div>
-                        
-                </section>
-            </div>
-			
-			<div class="right-side">
+                </div>
+
+            </section>
+        </div>
+
+        <div id="rightSide">
+            <section id="messages">
                 <div class="boxRight">
                     <div class="boxImg">
                         <img src="http://placehold.it/40x40">
@@ -83,6 +82,8 @@
                         <p id="studentQuestion" class="textLeft">Content</p>
                     </div>
                 </div>
+
+
                 <div class="boxRight">
                     <div class="boxImg">
                         <img src="http://placehold.it/40x40">
@@ -92,6 +93,7 @@
                         <p id="botAnswer" class="textLeft">Bot answer</p>
                     </div>
                 </div>
+
                 <div class="boxRight">
                     <div class="boxImg">
                         <img src="http://placehold.it/40x40">
@@ -101,12 +103,12 @@
                         <p id="showAnswer" class="textLeft">Søker...</p>
                     </div>
                 </div>
+            </section>
 
-                <p class="writeAnswer"> Write an answer to Danny: </p>
-				<textarea id="mainText" placeholder="Say something..."></textarea>
-				<button id="submitBtn" onclick="submitClick()">Send</button>
-			</div>
-		</div>
+            <p class="writeAnswer"> Write an answer</p>
+            <textarea id="mainText" placeholder="Say something useful..."></textarea>
+            <button id="submitBtn" onclick="submitClick()">Send</button>
+        </div>
 
         <script>
             $( function() {
@@ -134,11 +136,7 @@
 
   firebase.initializeApp(config);
 </script>
-<!--<script type="text/javascript">
-        $( "#Inbox" ).tabs({
-  active: 1
-}); 
-</script> -->
+        
 <script type="text/javascript">
 	var mainText = document.getElementById("mainText");
 	var submitBtn = document.getElementById("submitBtn");
@@ -249,7 +247,47 @@
 		console.log('Error!');
 		console.log(err);
 	}
+    
+    
+    
+    //GT 
+    
+    
+    
+    var inboxArray = [];
+    var messagesArray = [];
+    
+    var inbox = document.getElementById("Inbox");
+    var messages = document.getElementById("messages");
+    
+    
+    function showInbox(){
+                
+    var listInbox = inboxArray.length;
 
+    for(var i = 0; i < listInbox; i++){
+        var inboxElement = document.createElement("div");
+        inboxElement.innerHTML = inboxArray[i];
+        inboxElement.className = "boxLeft";
+        inboxElement.onclick = showMessages;
+        boxLeft.appendChild(inboxElement);
+        }
+    }/*end showInbox*/
+    
+    function showMessages(){
+    
+    var listMessages = messagesArray.length;
+
+    for(var i = 0; i < listMessages; i++){
+        var messageElement = document.createElement("div");
+        inboxElement.innerHTML = messagesArray[i];
+        inboxElement.className = "boxRight";
+        boxLeft.appendChild(messageElement);
+        }
+        
+
+    }/*end showMessages*/
+    
 </script>
 </body>
 </html>
