@@ -11,3 +11,7 @@ var index = React.createClass({
 });
 
 module.exports = index;
+        
+$( "#Inbox" ).tabs({
+  active: 1
+});
