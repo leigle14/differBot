@@ -14,7 +14,7 @@
 	</head>
     
 	<body>
-		<div class="mainDiv" align="left">
+		<div class="mainDiv">
 			
 			<div class="left-side">
                 <section class="headerLeft">
@@ -29,16 +29,32 @@
                         <div class="contentLeft">
                             <div id="Inbox">
                                 <div class="boxLeft">
-                                    <h2 id="user1" align="left">Firebase web App</h2>
-                                    <p id="userQuestion1" align="left">Content</p>
+                                    <div class="boxImg">
+                                    <img src="http://placehold.it/40x40">
+                                    </div>
+                                    <div class="contentBoxLeft"><span>
+                                        <h3 id="user1">Firebase web App</h3>
+                                        <p id="userQuestion1">Content</p>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="boxLeft">
-                                    <h2 id="user2" align="left">Title</h2>
-                                    <p id="userQuestion2" align="left">Bot answer</p>
+                                    <div class="boxImg">
+                                    <img src="http://placehold.it/40x40">
+                                    </div>
+                                    <div class="contentBoxLeft">
+                                        <h3 id="user2">Title</h3>
+                                        <p id="userQuestion2">Bot answer</p>
+                                    </div>
                                 </div>
                                 <div class="boxLeft">
-                                    <h2 id="user3" align="left">Svar</h2>
-                                    <p id="userQuestion3" align="left">Søker...</p>
+                                    <div class="boxImg">
+                                    <img src="http://placehold.it/40x40">
+                                    </div>
+                                    <div class="contentBoxLeft">
+                                        <h3 id="user3">Svar</h3>
+                                        <p id="userQuestion3">Søker...</p>
+                                    </div>
                                 </div>
                             </div>
                             <div id="Answered">
@@ -58,22 +74,36 @@
             </div>
 			
 			<div class="right-side">
-                <div class="botBox">
-                    <h2 id="studentName" align="left">Firebase web App</h2>
-                    <p id="fireAnswer" align="left">Content</p>
+                <div class="boxRight">
+                    <div class="boxImg">
+                        <img src="http://placehold.it/40x40">
+                        </div>
+                    <div class="contentBoxRight">
+                        <h3 id="studentName" class="textLeft">Firebase web App</h3>
+                        <p id="studentQuestion" class="textLeft">Content</p>
+                    </div>
                 </div>
-                <div class="botBox">
-                    <h2 id="botName" align="left">Title</h2>
-                    <p id="botAnswer" align="left">Bot answer</p>
+                <div class="boxRight">
+                    <div class="boxImg">
+                        <img src="http://placehold.it/40x40">
+                    </div>
+                    <div class="contentBoxRight">
+                        <h3 id="botName" class="textLeft">Title</h3>
+                        <p id="botAnswer" class="textLeft">Bot answer</p>
+                    </div>
                 </div>
-                <div class="botBox">
-                    <h2 id="answerToStudent" align="left">Svar</h2>
-                    <p id="showAnswer" align="left">Søker...</p>
+                <div class="boxRight">
+                    <div class="boxImg">
+                        <img src="http://placehold.it/40x40">
+                    </div>
+                    <div class="contentBoxRight">
+                        <h3 id="answerToStudent" class="textLeft">Svar</h3>
+                        <p id="showAnswer" class="textLeft">Søker...</p>
+                    </div>
                 </div>
 
                 <p class="writeAnswer"> Write an answer to Danny: </p>
 				<textarea id="mainText" placeholder="Say something..."></textarea>
-				<br>
 				<button id="submitBtn" onclick="submitClick()">Send</button>
 			</div>
 		</div>
@@ -83,8 +113,7 @@
                 $( "#tabs" ).tabs();
             } );
         </script>
-
-
+        
         <script>
             $(function(){
                 $(".boxLeft").click(function(){
@@ -92,8 +121,7 @@
                 });
             });
         </script>
-<!-- <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js">
-</script> -->
+
 <script>
   // Initialize Firebase
   var config = {
@@ -114,8 +142,8 @@
 <script type="text/javascript">
 	var mainText = document.getElementById("mainText");
 	var submitBtn = document.getElementById("submitBtn");
-	var fireHeading = document.getElementById("fireHeading");
-	var fireAnswer = document.getElementById("fireAnswer");
+	var studentName = document.getElementById("studentName");
+	var studentQuestion = document.getElementById("studentQuestion");
 	var botAnswer = document.getElementById("botAnswer");
 	var botName = document.getElementById("botName");
 	var showAnswer = document.getElementById("showAnswer");
@@ -162,15 +190,15 @@
 		});
 
 
-	var firebaseHeadingRef = firebase.database().ref().child("Names").child("1");
-	firebaseHeadingRef.on('value', function(datasnapshot) {
-		fireHeading.innerText = datasnapshot.val();
+	var studentNameRef = firebase.database().ref().child("Names").child("1");
+		studentNameRef.on('value', function(datasnapshot) {
+			studentName.innerText = datasnapshot.val();
 		});
 
 		// Henter ut meldinger fra child "Melding" "1".
-	var firebaseAnswerRef = firebase.database().ref().child("Melding").child("1");	
-		firebaseAnswerRef.on('value', function(datasnapshot) {
-			fireAnswer.innerText = datasnapshot.val();
+	var studentQuestionRef = firebase.database().ref().child("Melding").child("1");	
+		studentQuestionRef.on('value', function(datasnapshot) {
+			studentQuestion.innerText = datasnapshot.val();
 		});
 		// Henter navnet til botten fra databasen
 	var botNameRef = firebase.database().ref().child("Bots").child("BotName");
@@ -189,15 +217,19 @@
 		
 		// Skal egentlig hente value ut fra "Answer". Som foreleser svarer på. 
 	var showAnswerRef = firebase.database().ref().child("SvarTilStudent");
-		showAnswerRef.on('value', function(datasnapshot) {
-			showAnswer.innerText = datasnapshot.val();
-		});
+   		 showAnswerRef.on('value', function(datasnapshot) {
+            var data = datasnapshot.exportVal();
+            for(var child in data){
+                showAnswer.innerText = data[child];
+            }
+        });
 
 
 
 	// Sender inn teksten i textarea til firebase databasen når "Send" knappen blir trykket på
 	// Det som er litt av problemet nå er at key blir random laget.
-	function submitClick() {	
+	
+    function submitClick() {	
 
 	// Sender svaret til firebase databasen under "Answer" childe
 	var firebaseRef = firebase.database().ref().child("SvarTilStudent");
@@ -205,6 +237,8 @@
 	var messageText = mainText.value;
 
 	firebaseRef.push().set(messageText);
+    mainText.value = "";
+        
 	}
 
 	function gotData(data) {
